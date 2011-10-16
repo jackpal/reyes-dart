@@ -1,6 +1,5 @@
 void displace(Microgrid grid)
 {
-  return;
     for (int u=0; u < grid.w; u++) {
         for (int v=0; v < grid.h; v++) {
             P3d vert = grid.getVertex(u,v);

@@ -8,7 +8,6 @@
 #source("CanvasColorBuffer.dart");
 #source("Color.dart");
 #source("ColorBuffer.dart");
-#source("Matrix4x4.dart");
 #source("Microgrid.dart");
 #source("Micropolygon.dart");
 #source("Noise.dart");

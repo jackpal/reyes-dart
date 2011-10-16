@@ -1,6 +1,5 @@
 class Projection {
-  // TODO: use the cameraMatrix
-  Matrix4x4 cameraMatrix;
+  // TODO: add a cameraMatrix
   double dx,dy;
   double screenWidth;
   double screenHeight;
