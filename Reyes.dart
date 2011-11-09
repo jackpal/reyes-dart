@@ -27,7 +27,6 @@
 // Notes:
 // like lack of != operator
 // not sure I like using dynamic code to implement overloading.
-// Bug: can't write to canvas image data.
 
 class reyes {
 
@@ -35,7 +34,8 @@ class reyes {
   }
   
   void doRender(ColorBuffer screen) {
-
+    Date start = new Date.now();
+    
     Projection camera = new Projection();
 
     Queue<Shape> unsplit_shapes = new Queue<Shape>(); 
@@ -68,12 +68,20 @@ class reyes {
 
         boundSplit(unsplit_shapes, split_shapes, camera);
 
-        render(split_shapes, camera, zbuffer, screen, () {write('done!');});
+        render(split_shapes, camera, zbuffer, screen,
+          () {
+            Date end = new Date.now();
+            Duration diff = end.difference(start);
+            String message = 'done! elapsed time = $diff';
+            log(message);
+            // log doesn't seem to work on Firefox.
+            print(message);
+          });
   }
 
   void run() {
     HTMLCanvasElement canvas = document.getElementById('reyesCanvas');
-    CanvasColorBuffer colorBuffer = new CanvasColorBuffer(canvas);
+    ColorBuffer colorBuffer = new CanvasColorBuffer(canvas);
     doRender(colorBuffer);
   }
   

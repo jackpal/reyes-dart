@@ -1,22 +1,23 @@
-
-
 class CanvasColorBuffer extends ColorBuffer {
   HTMLCanvasElement _canvas;
   CanvasRenderingContext2D _context;
+  ImageData _imageData;
   
   CanvasColorBuffer(HTMLCanvasElement canvas) :
     super(canvas.width, canvas.height),
-    _canvas = canvas, _context = canvas.getContext('2d');
-
+    _canvas = canvas, _context = canvas.getContext('2d') {
+    _imageData = _context.createImageData(width, height);
+  }
+  
   void setPixel(int x, int y, Color c) {
-    _context.setFillColor(c.r, c.g, c.b, 1.0);
-    _context.fillRect(x, y, 1, 1);
+    int base = 4 * (x + y * width);
+    _imageData.data[base] = (c.r * 255.0).toInt();
+    _imageData.data[base + 1] = (c.g * 255.0).toInt();
+    _imageData.data[base + 2] = (c.b * 255.0).toInt();
+    _imageData.data[base + 3] = 255;
   }
   
-  void clear(Color c) {
-    _context.setFillColor(c.r, c.g, c.b, 1.0);
-    _context.fillRect(0, 0, _canvas.width, _canvas.height);
+  void flush() {
+    _context.putImageData(_imageData, 0, 0);
   }
-  
-  void flush() {}
 }

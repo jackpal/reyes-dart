@@ -15,7 +15,7 @@ Install Dart from http://code.google.com/p/dart/
 
 Building reyes-dart
 
-... add instructions on how to build here ...
+build using the build.sh script, which assumes that you have installed the dart "frog" compiler. (You may have to edit the build.sh script.)
 
 Running reyes-dart
 

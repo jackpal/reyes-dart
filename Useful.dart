@@ -3,7 +3,7 @@ double radians(double degrees)
     return degrees * 0.017453277;
 }
 
-void write(String message) {
+void log(String message) {
   // the DOM library defines a global "window" variable
   HTMLDocument doc = window.document;
   HTMLParagraphElement p = doc.createElement('p');
